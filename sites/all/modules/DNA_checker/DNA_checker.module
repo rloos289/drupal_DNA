@@ -23,7 +23,8 @@ function DNA_checker_form() {
         '#title' => 'DNA',
         '#type' => 'textfield',
         '#description' => t('Input DNA sequence'),
-        // '#element_validate' => array('element_validate_characters'),
+        '#element_validate' => array('element_validate_characters'),
+        '#required' => TRUE,
     );
     $form['submit'] = array(
         '#type' => 'submit',
@@ -33,20 +34,11 @@ function DNA_checker_form() {
 }
 
 
-// function element_validate_characters($element) {
-//     $characters = array('A','T','C','G','a','t','c','g');
-//     if($element) {
-//         form_error($element, t('Shift magnitude must be between 1 and 25'));
-//     }
-// }
-
-//validation that excludes special characters from input phrase
-//accepted characters are: . , ! ? [space] a-z A-Z
-// function element_validate_no_special_characters($element) {
-//     if(preg_match('/[^a-zA-z.,!? ]+/', $element['#value'])) {
-//         form_error($element, t('Phrase may only contain characters a-z A-Z . , ! ? [space]'));
-//     }
-// }
+function element_validate_characters($element) {
+    if(preg_match('/[^ATCGatcg]/', $element['#value'])) {
+        form_error($element, t('Phrase may only contain characters a,t,c, and g'));
+    }
+}
 
 function DNA_converter($DNA) {
   $DNA = str_split(strtolower($DNA));
