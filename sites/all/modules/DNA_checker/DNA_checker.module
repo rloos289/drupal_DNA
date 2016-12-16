@@ -1,0 +1,62 @@
+<?php
+
+//create main menu item
+function DNA_checker_menu() {
+    $items['DNA_checker'] = array(
+        'title' => 'DNA Checker',
+        'page callback' => 'drupal_get_form',
+        'page arguments' => array('DNA_checker_form'),
+        'access callback' => TRUE,
+        'type' => MENU_NORMAL_ITEM,
+    );
+    $items['DNA_checker_output'] = array(
+        'title' => 'DNA Checker Results',
+        'page callback' => 'DNA_checker_output',
+        'access callback' => TRUE,
+        'type' => MENU_CALLBACK,
+    );
+    return $items;
+}
+
+function DNA_checker_form() {
+    $form['DNA_first'] = array(
+        '#title' => 'DNA',
+        '#type' => 'textfield',
+        '#description' => t('Input DNA sequence'),
+        // '#element_validate' => array('element_validate_characters'),
+    );
+    $form['submit'] = array(
+        '#type' => 'submit',
+        '#value' => 'Encrypt',
+    );
+    return $form;
+}
+
+
+// function element_validate_characters($element) {
+//     $characters = array('A','T','C','G','a','t','c','g');
+//     if($element) {
+//         form_error($element, t('Shift magnitude must be between 1 and 25'));
+//     }
+// }
+
+//validation that excludes special characters from input phrase
+//accepted characters are: . , ! ? [space] a-z A-Z
+// function element_validate_no_special_characters($element) {
+//     if(preg_match('/[^a-zA-z.,!? ]+/', $element['#value'])) {
+//         form_error($element, t('Phrase may only contain characters a-z A-Z . , ! ? [space]'));
+//     }
+// }
+
+function DNA_checker_form_submit($form, &$form_state) {
+    $DNA_first = $form_state['values']['DNA_first'];
+
+    $DNA_second = 'test';
+    $_SESSION['DNA_second'] = $DNA_second;
+    $form_state['redirect'] = 'DNA_checker_output';
+}
+
+function DNA_checker_output() {
+    return $_SESSION['DNA_second'];
+
+}

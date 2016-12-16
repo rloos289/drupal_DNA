@@ -1,0 +1,7 @@
+name = DNA checker
+description = Tells you the other side of a DNA helix.
+package = Custom modules
+core = 7.x
+files[] = DNA_checker.module
+files[] = DNA_checker.test
+dependencies[] = simpletest
