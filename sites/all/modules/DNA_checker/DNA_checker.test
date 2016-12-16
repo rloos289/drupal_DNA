@@ -32,3 +32,18 @@ class MyDateTestCase extends DrupalUnitTestCase
         $this->assertEqual($result, 'tattcg', $description);
     }
 }
+
+class DnaModuleTests extends DrupalWebTestCase {
+
+    public static function getInfo() {
+        return array(
+            'name' => 'DNA Module Test',
+            'description' => 'Functional tests for the DNA Module.',
+            'group' => 'AA Tests',
+        );
+    }
+
+    public function setUp() {
+        parent::setUp(array('dna'));
+    }
+}
