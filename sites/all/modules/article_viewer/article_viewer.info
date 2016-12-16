@@ -1,0 +1,5 @@
+name = article viewer
+description = Display Nodes with Ajax.
+package = Custom Modules
+core = 7.x
+files[] = article_viewer.module
