@@ -48,10 +48,13 @@ function DNA_checker_form() {
 //     }
 // }
 
+function DNA_converter($DNA) {
+  return $DNA;
+}
+
 function DNA_checker_form_submit($form, &$form_state) {
     $DNA_first = $form_state['values']['DNA_first'];
-
-    $DNA_second = 'test';
+    $DNA_second = DNA_converter($DNA_first);
     $_SESSION['DNA_second'] = $DNA_second;
     $form_state['redirect'] = 'DNA_checker_output';
 }

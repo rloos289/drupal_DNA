@@ -1,0 +1,31 @@
+<?php
+
+class MyDateTestCase extends DrupalUnitTestCase
+{
+    public static function getInfo()
+    {
+
+        //just returns information about the tests in this class.
+        return array(
+        'name' => 'My DNA test',
+        'description' => 'Test DNA_converter works properly',
+        'group' => 'AA Tests',
+        );
+
+    }
+    function testDNAConverter()
+    {
+        $description = 'A T A A G C should result in T A T T C G';
+        $input = '';
+
+        //Act
+        //run the function we're testing with input and store output in $result.
+        $result = DNA_converter($input);
+
+        //Assert
+        //not quite the same as assertEquals.
+        //using assertTrue: if $result is true, test passes.
+        //pass in $description for display.
+        $this->assertEqual($result, 'test');
+    }
+}
