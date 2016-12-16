@@ -13,18 +13,22 @@ class MyDateTestCase extends DrupalUnitTestCase
         );
 
     }
-    function testDNAConverter()
+    function testDNAConverter_single()
     {
-        $input = 'ATAAGC';
+        $description = 'When a single letter is inputted, its opposite is outputted';
+        $input = 'A';
 
-        //Act
-        //run the function we're testing with input and store output in $result.
         $result = DNA_converter($input);
 
-        //Assert
-        //not quite the same as assertEquals.
-        //using assertTrue: if $result is true, test passes.
-        //pass in $description for display.
-        $this->assertEqual($result, 'tattcg'); 
+        $this->assertEqual($result, "t", $description);
+    }
+    function testDNAConverter_whole()
+    {
+        $description = 'When the whole string is inputted, the whole reverse string is outputted';
+        $input = 'ATAAGC';
+
+        $result = DNA_converter($input);
+
+        $this->assertEqual($result, 'tattcg', $description);
     }
 }
