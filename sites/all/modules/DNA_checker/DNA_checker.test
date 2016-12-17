@@ -1,6 +1,6 @@
 <?php
 
-class MyDateTestCase extends DrupalUnitTestCase
+class DNAUnitTests extends DrupalUnitTestCase
 {
     public static function getInfo()
     {
@@ -33,17 +33,32 @@ class MyDateTestCase extends DrupalUnitTestCase
     }
 }
 
-class DnaModuleTests extends DrupalWebTestCase {
-
-    public static function getInfo() {
+class DNAFunctionalTests extends DrupalWebTestCase
+{
+    public static function getInfo()
+    {
         return array(
-            'name' => 'DNA Module Test',
-            'description' => 'Functional tests for the DNA Module.',
+            'name' => 'DNA Functional Tests',
+            'description' => 'Functional Tests for the DNA interface.',
             'group' => 'AA Tests',
         );
     }
 
-    public function setUp() {
-        parent::setUp(array('dna'));
+    public function setUp()
+    {
+        parent::setUp(array('DNA_checker'));
+    }
+
+    public function testHelixHalf()
+    {
+        $this->drupalGet('DNA_checker');
+
+        $this->assertText("DNA Checker", 'Form displayed!');
+
+        $form['DNA_first'] = 'a';
+
+        $this->drupalPost('dna_checker', $form, t('submit'));
+
+        $this->assertText('t', 'Output displayed!');
     }
 }

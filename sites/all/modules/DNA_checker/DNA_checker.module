@@ -28,7 +28,7 @@ function DNA_checker_form() {
     );
     $form['submit'] = array(
         '#type' => 'submit',
-        '#value' => 'Encrypt',
+        '#value' => 'submit',
     );
     return $form;
 }
